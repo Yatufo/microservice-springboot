@@ -1,0 +1,29 @@
+repository:
+  mongo:
+    server: localhost
+    port: 27017
+    dbName: timezones
+    url: mongodb://${repository.mongo.server}:${repository.mongo.port}/${repository.mongo.dbName}
+
+security:
+  oauth2.resource.filter-order: 4
+  signing-key: TimeZonesSigningKey
+  encoding-strength: 256
+  encoder-secret: TimeZonesEncoderSecret
+  security-realm: TimeZonesRealm
+
+  jwt:
+    client-id: WebAppClientId
+    client-secret: SecretWebAppClientId
+    grant-types: password
+    scope-read: read
+    scope-write: write
+    resource-ids: oauth2-resource
+
+test:
+  api:
+    server: localhost
+    port: 8080
+    baseUrl: ${test.api.server}:${test.api.port}
+    url: ${test.api.server}:${test.api.port}/api/v1
+    tokenUrl: ${security.jwt.clientId}:${security.jwt.clientSecret}@${test.api.baseUrl}/oauth/token

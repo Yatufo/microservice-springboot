@@ -1,0 +1,374 @@
+{
+	"info": {
+		"name": "Timezone",
+		"_postman_id": "84d4c6b0-8cc7-2074-49a8-53c4452062d3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "username",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{clientId}}:{{secret}}@{{server}}/oauth/token",
+					"host": [
+						"{{server}}"
+					],
+					"auth": {
+						"user": "{{clientId}}",
+						"password": "{{secret}}"
+					},
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Token Json",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin\", \"grant-type\" : \"password\",\"password\":\"password\"}"
+				},
+				"url": {
+					"raw": "http://WebAppClientId:SecretWebAppClientId@localhost:8081/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"auth": {
+						"user": "WebAppClientId",
+						"password": "SecretWebAppClientId"
+					},
+					"port": "8081",
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Timezone",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Canada/Eastern\", \"city\": \"Montreal\", \"difference\": -5 }"
+				},
+				"url": {
+					"raw": "{{api}}/timezones",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"timezones"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Timezones",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{anonymousToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/timezones",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"timezones"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Timezone by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/timezones/59f91c1ddf6c9c3d330986d0",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"timezones",
+						"59f91c1ddf6c9c3d330986d0"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Timezone by Name",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "name",
+						"value": "Canada/Eastern"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/timezones",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"timezones"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Timezone by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/timezones/59f91c1ddf6c9c3d330986d0",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"timezones",
+						"59f91c1ddf6c9c3d330986d0"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"alex\", \"password\": \"password\"}"
+				},
+				"url": {
+					"raw": "{{api}}/users",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{anonymousToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/users",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{anonymousToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/users",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{api}}/users/59f91c1ddf6c9c3d330986d0",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"users",
+						"59f91c1ddf6c9c3d330986d0"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
